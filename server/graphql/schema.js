@@ -4,24 +4,24 @@ const { RESTDataSource } = require('apollo-datasource-rest');
 var schema = buildSchema(`
   type Query {
     getAllUsers: [User]
-    getUser(_id: String!): User
+    getUser(id: String!): User
 
-    getPosts(_id: String!): [Post]
+    getPosts(id: String!): [Post]
 
-    getCommentsByAuthorId(_id: String!): [Comment]
-    getCommentsByPostId(_id: String!): [Comment]
+    getCommentsByAuthorId(id: String!): [Comment]
+    getCommentsByPostId(id: String!): [Comment]
   }
 
   type Mutation {
     createUser(name: String!): User
     
     createPost(title: String!, contents: String!, author: AuthorInput!): Post
-    updatePost(_id: String!, title: String, contents: String): Post
-    removePost(_id: String!): Post
+    updatePost(id: String!, title: String, contents: String): Post
+    removePost(id: String!): Post
 
     createComment(contents: String!, author: AuthorInput!, postId: String!): Comment
-    updateComment(_id: String!, contents: String): Comment
-    removeComment(_id: String!): Comment
+    updateComment(id: String!, contents: String): Comment
+    removeComment(id: String!): Comment
   }
 
   input AuthorInput {
@@ -168,7 +168,7 @@ var resolver = {
 
   getPosts: async (args) => {
     const {id} = args;
-    return await restAPI.getUser(id);
+    return await restAPI.getPosts(id);
   },
 
   updatePost: async (args) => {
