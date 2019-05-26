@@ -12,8 +12,8 @@ POST http://localhost:3000/api/createUser
 Content-Type: application/json
 
 { 
-    "_id": "feryll@gmail.com",
-    "name": "test"
+    "_id": "feryll22@gmail.com",
+    "name": "test22"
 }
 ###
 
@@ -24,29 +24,29 @@ Content-Type: application/json
 
 { 
     "author": {
-        "id": "5cea548309a91c2974048422",
+        "id": "5cea609c4b316e3d548a3684",
         "name": "test"
     },
-    "title": "test post3",
+    "title": "test postAAAA",
     "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante ornare, fringilla nisl eu, pellentesque tortor. Sed imperdiet in justo eget elementum. Cras quis tincidunt lorem. Nullam scelerisque felis et dui lacinia, sed suscipit nisi ultricies. Integer tincidunt lacinia hendrerit. Donec sed quam a eros malesuada tincidunt. Nulla molestie sapien quis purus scelerisque, id aliquet tellus ullamcorper. Phasellus convallis molestie tempus. Ut vitae diam sed felis iaculis auctor. Nunc blandit maximus consectetur. Phasellus ac ipsum nec urna viverra luctus. Curabitur vulputate magna a pretium posuere. Vestibulum ut mauris id lorem varius venenatis id sit amet neque. Pellentesque ligula metus, laoreet at ornare eget, pellentesque non lacus."
 }
 ###
 
 
-GET http://localhost:3000/api/getPosts/5cea548309a91c2974048422
+GET http://localhost:3000/api/getPosts/5cea609c4b316e3d548a3684
 ###
 
 
-PUT http://localhost:3000/api/updatePost/5cea549109a91c2974048423
+PUT http://localhost:3000/api/updatePost/5cea60b04b316e3d548a3685
 Content-Type: application/json
 
 { 
-    "title": "test post1",
+    "title": "post1",
     "contents": "!!!!!!!!!!!!!!!!!! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante ornare, fringilla nisl eu, pellentesque tortor. Sed imperdiet in justo eget elementum. Cras quis tincidunt lorem. Nullam scelerisque felis et dui lacinia, sed suscipit nisi ultricies. Integer tincidunt lacinia hendrerit. Donec sed quam a eros malesuada tincidunt. Nulla molestie sapien quis purus scelerisque, id aliquet tellus ullamcorper. Phasellus convallis molestie tempus. Ut vitae diam sed felis iaculis auctor. Nunc blandit maximus consectetur. Phasellus ac ipsum nec urna viverra luctus. Curabitur vulputate magna a pretium posuere. Vestibulum ut mauris id lorem varius venenatis id sit amet neque. Pellentesque ligula metus, laoreet at ornare eget, pellentesque non lacus."
 }
 ###
 
-DELETE http://localhost:3000/api/removePost/5cea549609a91c2974048424
+DELETE http://localhost:3000/api/removePost/5cea74f4b41c4e424013081a
 ###
 
 # Comment API #
@@ -55,18 +55,18 @@ Content-Type: application/json
 
 { 
     "author": {
-        "id": "5cea548309a91c2974048422",
+        "id": "5cea609c4b316e3d548a3684",
         "name": "test"
     },
-    "postId": "5cea549609a91c2974048424",
+    "postId": "5cea74f4b41c4e424013081a",
     "contents": "11111 short comment1. comment short comment1."
 }
 ###
 
-GET http://localhost:3000/api/getCommentsByAuthorId/5cea548309a91c2974048422
+GET http://localhost:3000/api/getCommentsByAuthorId/5cea609c4b316e3d548a3684
 ###
 
-GET http://localhost:3000/api/getCommentsByPostId/5cea450d4f873d4a10d3e773
+GET http://localhost:3000/api/getCommentsByPostId/5cea68aceadab304445e211a
 ###
 
 PUT http://localhost:3000/api/updateComment/5cea528005a581048c0b1677
@@ -78,4 +78,7 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/api/removeComment/5cea51fe05a581048c0b1675
+###
+
+GET http://localhost:3000/api/clearComments/5cea609c4b316e3d548a3684
 ###

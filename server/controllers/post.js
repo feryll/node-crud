@@ -62,9 +62,6 @@ module.exports = {
                 }
             });
 
-            // 위 코멘트 작성자들의 comments 필드 갱신
-            User.find({"_id": {$in: post.commentsAuthor}}).update({$pull:{ comments: post.commentsId}})
-
             // 해당 post의 작성자의 posts 필드 갱신
             User.findByIdAndUpdate({ _id : post.author.id}, {$pull: { posts: post._id}}, 
                 function(err, user){
@@ -75,6 +72,14 @@ module.exports = {
                     response.json(user);
                 }
             );
+
+            // 위 코멘트 작성자들의 comments 필드 갱신
+            User.updateMany({"_id": {$in: post.commentsAuthor}}, {$pull:{ comments: {$in: post.commentsId} }}, function(err) {
+                if(err) {
+                    console.log("Error in update user because of deleting a post", err);
+                    throw err;
+                }
+            });
         });
     }
 }

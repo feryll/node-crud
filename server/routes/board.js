@@ -7,6 +7,7 @@ module.exports = function(router, DAO){
     router.post('/createUser', DAO.user.createUser);
     router.get('/getUser', DAO.user.getAllUsers);
     router.get('/getUser/:id', DAO.user.getUser);
+    router.get('/clearComments/:id', DAO.user.clearComments);
 
     router.post('/createPost', DAO.post.createPost);
     router.get('/getPosts/:id', DAO.post.getPosts);
