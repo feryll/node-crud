@@ -26,6 +26,7 @@ const commentSchema = new Schema({
       id: { type: Schema.Types.ObjectId, ref: 'User' }, 
       name: { type: String, required: true }
     },
+    postId : {type: Schema.Types.ObjectId, ref: 'Post'},
     contents: { type: String, required: true },
     created: { type: Date, default: Date.now }
 });

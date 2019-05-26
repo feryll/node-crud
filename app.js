@@ -7,7 +7,7 @@ var router = express.Router();
 
 var db = require('./config/database');
 var routes = require('./server/routes/board');
-var Board = require('./server/controllers/board');
+var DAO = require('./server/controllers/dao');
 
 var app = express();
 db();
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
-routes(router, Board);
+routes(router, DAO);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
