@@ -28,18 +28,6 @@ module.exports = {
             });
     },
 
-    // for debugging
-    clearComments : function(request,response){
-        User.findByIdAndUpdate({ _id : request.params.id}, {$set: { comments: []}}, function(err, user){
-            if(err){
-                console.log("Error in fetching single item of user ", err);
-                throw err;
-            }
-
-            response.json(user);
-        });
-    },
-
     getUser : function(request, response){
         User.findById({ _id : request.params.id}, function(err, user){
             if(err){
