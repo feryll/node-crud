@@ -1,3 +1,4 @@
+
 module.exports = function(router, Board){
     router.get('/', function(request, response){
         response.send("Board(User, Post, Comment) CRUD REST API is ready");
