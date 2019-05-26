@@ -10,6 +10,7 @@ var schema = buildSchema(`
 
     getCommentsByAuthorId(id: String!): [Comment]
     getCommentsByPostId(id: String!): [Comment]
+    getCommentsPageByPostId(id: String!, skip: Int!, limit: Int!, sort: String!, order: String!): [Comment]
   }
 
   type Mutation {
@@ -121,6 +122,10 @@ class RestWapper extends RESTDataSource {
     return this.get(`getCommentsByPostId/${id}`);
   }
 
+  async getCommentsPageByPostId(body) {
+    return this.get(`getCommentsPageByPostId/${body.id}?skip=${body.skip}&limit=${body.limit}&sort=${body.sort}&order=${body.order}`);
+  }
+
   async updateComment(body) {
     return this.put(
       `updateComment/${body.id}`, // path
@@ -207,6 +212,18 @@ var resolver = {
     return await restAPI.getCommentsByPostId(id);    
   },
 
+  getCommentsPageByPostId: async (args) => {
+    const {id, skip, limit, order, sort} = args;
+    const body = {
+      "id": id,
+      "skip": skip,
+      "limit": limit,
+      "order": order,
+      "sort": sort
+    };
+    return await restAPI.getCommentsPageByPostId(body);    
+  },
+
   updateComment: async (args) => {
     const {id, contents} = args;
     const body = {
@@ -221,6 +238,5 @@ var resolver = {
     return await restAPI.removeComment(id);
   },
 };
-
 
 module.exports = {schema: schema, root: resolver};

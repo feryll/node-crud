@@ -59,6 +59,28 @@ module.exports = {
         });
     },
 
+    getCommentsPageByPostId : function(request, response){
+        var {skip, limit, order, sort} = request.query;
+        if (!(sort && order && skip && limit)) return response.json({ success: false, msg: 'invalid request' });
+        order = parseInt(order);
+        limit = parseInt(limit);
+        skip = parseInt(skip);
+        const s = {}
+        s[sort] = order;
+        
+        Comment.find({ postId : request.params.id}, function(err, comments){
+            if(err){
+                console.log("Error in fetching comments", err);
+                throw err;
+            }
+
+            response.json(comments);
+        })
+        .sort(s)
+        .skip(skip)
+        .limit(limit);
+    },
+
     updateComment : function(request, response){
         Comment.findByIdAndUpdate({ _id : request.params.id},{$set: { contents: request.body.contents}},{new : true} , function(err, comment){
             if(err){

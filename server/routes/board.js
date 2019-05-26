@@ -16,6 +16,7 @@ module.exports = function(router, DAO){
     router.post('/createComment', DAO.comment.createComment);
     router.get('/getCommentsByAuthorId/:id', DAO.comment.getCommentsByAuthorId);
     router.get('/getCommentsByPostId/:id', DAO.comment.getCommentsByPostId);
+    router.get('/getCommentsPageByPostId/:id', DAO.comment.getCommentsPageByPostId);
     router.put('/updateComment/:id', DAO.comment.updateComment);
     router.delete('/removeComment/:id', DAO.comment.removeComment);
 }

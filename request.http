@@ -57,8 +57,8 @@ Content-Type: application/json
         "id": "5cea609c4b316e3d548a3684",
         "name": "test"
     },
-    "postId": "5cea74f4b41c4e424013081a",
-    "contents": "11111 short comment1. comment short comment1."
+    "postId": "5cea9e19348d0945ecde8097",
+    "contents": "2222 short comment1. comment short comment1."
 }
 ###
 
@@ -67,6 +67,11 @@ GET http://localhost:3000/api/getCommentsByAuthorId/5cea609c4b316e3d548a3684
 
 GET http://localhost:3000/api/getCommentsByPostId/5cea68aceadab304445e211a
 ###
+
+
+GET http://localhost:3000/api/getCommentsPageByPostId/5cea9e19348d0945ecde8097?skip=2&limit=2&order=created&sort=desc
+###
+
 
 PUT http://localhost:3000/api/updateComment/5cea528005a581048c0b1677
 Content-Type: application/json
