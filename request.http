@@ -17,12 +17,14 @@ Content-Type: application/json
 }
 ###
 
+
+# Post API #
 POST http://localhost:3000/api/createPost
 Content-Type: application/json
 
 { 
     "author": {
-        "id": "5cea36edfcfa1d3b708178e0",
+        "id": "5cea548309a91c2974048422",
         "name": "test"
     },
     "title": "test post3",
@@ -31,22 +33,49 @@ Content-Type: application/json
 ###
 
 
-GET http://localhost:3000/api/getPosts/5cea36edfcfa1d3b708178e0
+GET http://localhost:3000/api/getPosts/5cea548309a91c2974048422
 ###
 
 
-PUT http://localhost:3000/api/updatePost/5cea450d4f873d4a10d3e773
+PUT http://localhost:3000/api/updatePost/5cea549109a91c2974048423
 Content-Type: application/json
 
 { 
-    "author": {
-        "id": "5cea36edfcfa1d3b708178e0",
-        "name": "test"
-    },
-    "title": "test post4",
+    "title": "test post1",
     "contents": "!!!!!!!!!!!!!!!!!! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante ornare, fringilla nisl eu, pellentesque tortor. Sed imperdiet in justo eget elementum. Cras quis tincidunt lorem. Nullam scelerisque felis et dui lacinia, sed suscipit nisi ultricies. Integer tincidunt lacinia hendrerit. Donec sed quam a eros malesuada tincidunt. Nulla molestie sapien quis purus scelerisque, id aliquet tellus ullamcorper. Phasellus convallis molestie tempus. Ut vitae diam sed felis iaculis auctor. Nunc blandit maximus consectetur. Phasellus ac ipsum nec urna viverra luctus. Curabitur vulputate magna a pretium posuere. Vestibulum ut mauris id lorem varius venenatis id sit amet neque. Pellentesque ligula metus, laoreet at ornare eget, pellentesque non lacus."
 }
 ###
 
-DELETE http://localhost:3000/api/removePost/5cea3c9643f68e4aa49b8062
+DELETE http://localhost:3000/api/removePost/5cea549609a91c2974048424
+###
+
+# Comment API #
+POST http://localhost:3000/api/createComment
+Content-Type: application/json
+
+{ 
+    "author": {
+        "id": "5cea548309a91c2974048422",
+        "name": "test"
+    },
+    "postId": "5cea549609a91c2974048424",
+    "contents": "11111 short comment1. comment short comment1."
+}
+###
+
+GET http://localhost:3000/api/getCommentsByAuthorId/5cea548309a91c2974048422
+###
+
+GET http://localhost:3000/api/getCommentsByPostId/5cea450d4f873d4a10d3e773
+###
+
+PUT http://localhost:3000/api/updateComment/5cea528005a581048c0b1677
+Content-Type: application/json
+
+{ 
+    "contents":  "33333."
+}
+###
+
+DELETE http://localhost:3000/api/removeComment/5cea51fe05a581048c0b1675
 ###

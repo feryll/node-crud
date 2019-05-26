@@ -18,7 +18,8 @@ const postSchema = new Schema({
     title: { type: String, required: true },
     contents: { type: String, required: true },
     created: { type: Date, default: Date.now },
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    commentsId: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    commentsAuthor: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
 const commentSchema = new Schema({

@@ -6,7 +6,8 @@ module.exports = {
     createComment : function(request, response){
             var data = new Comment({
                 author: request.body.author,
-                contents: request.body.contents
+                contents: request.body.contents,
+                postId: request.body.postId
             }).save(function(err, comment){
                 if(err){
                     console.log("Error in create new comment", err);
@@ -14,7 +15,7 @@ module.exports = {
                 }
 
                 // 코멘트가 속한 post의 comments 필드 갱신
-                Post.findByIdAndUpdate({ _id : comment.postId}, {$push: { comments: comment._id}}, 
+                Post.findByIdAndUpdate({ _id : comment.postId}, {$push: { commentsId: comment._id, commentsAuthor: comment.author.id}}, 
                     function(err, post){
                         if(err){
                             console.log("Error in update post because of a new comment", err);
@@ -59,7 +60,7 @@ module.exports = {
     },
 
     updateComment : function(request, response){
-        Comment.findByIdAndUpdate({ _id : request.params.id},{$set: request.body},{new : true} , function(err, comment){
+        Comment.findByIdAndUpdate({ _id : request.params.id},{$set: { contents: request.body.contents}},{new : true} , function(err, comment){
             if(err){
                 console.log("Error in updating single item of comment", err);
                 throw err;
@@ -77,7 +78,7 @@ module.exports = {
             }
 
             // 해당 comment의 작성자의 comments 필드 갱신
-            User.findByIdAndUpdate({ _id : comment.author.id}, {$pull: { comments: comment._id}}, 
+            User.findByIdAndUpdate({ _id : comment.author.id}, {$pull: { commentsId: comment._id, commentsAuthor: comment.author.id}}, 
                 function(err, user){
                     if(err){
                         console.log("Error in update user because of deleting a comment", err);

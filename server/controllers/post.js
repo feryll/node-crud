@@ -37,7 +37,7 @@ module.exports = {
     },
 
     updatePost : function(request, response){
-        Post.findByIdAndUpdate({ _id : request.params.id},{$set: request.body},{new : true} , function(err, post){
+        Post.findByIdAndUpdate({ _id : request.params.id},{$set: { title: request.body.title, contents: request.body.contents}},{new : true} , function(err, post){
             if(err){
                 console.log("Error in updating single item of post", err);
                 throw err;
@@ -55,12 +55,15 @@ module.exports = {
             }
 
             // post에 속한 모든 comments 삭제 
-            Comment.find({ "author.id" : post.author.id}).remove(function(err) {
+            Comment.find({ postId: post._id}).remove(function(err) {
                 if(err) {
                     console.log("Error in removing all comments of post", err);
                     throw err;
                 }
             });
+
+            // 위 코멘트 작성자들의 comments 필드 갱신
+            User.find({"_id": {$in: post.commentsAuthor}}).update({$pull:{ comments: post.commentsId}})
 
             // 해당 post의 작성자의 posts 필드 갱신
             User.findByIdAndUpdate({ _id : post.author.id}, {$pull: { posts: post._id}}, 
