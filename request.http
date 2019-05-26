@@ -1,0 +1,13 @@
+
+GET http://localhost:3000/api/getUser
+###
+
+GET http://localhost:3000/api/getUser
+###
+
+POST http://localhost:3000/api/createUser
+Content-Type: application/json
+{ 
+    "name": "test",
+}
+###
