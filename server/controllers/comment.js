@@ -12,7 +12,19 @@ module.exports = {
                     console.log("Error in create new comment", err);
                     throw err;
                 }
-                User.findByIdAndUpdate({ _id : request.body.author.id}, {$push: { comments: comment._id}}, 
+
+                // 코멘트가 속한 post의 comments 필드 갱신
+                Post.findByIdAndUpdate({ _id : comment.postId}, {$push: { comments: comment._id}}, 
+                    function(err, post){
+                        if(err){
+                            console.log("Error in update post because of a new comment", err);
+                            throw err;
+                        }
+                    }
+                );
+                
+                // 코멘트 작성자의 comments 필드 갱신
+                User.findByIdAndUpdate({ _id : comment.author.id}, {$push: { comments: comment._id}}, 
                     function(err, post){
                         if(err){
                             console.log("Error in update user because of a new comment", err);

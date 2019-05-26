@@ -1,11 +1,8 @@
 # how to use
-# install vs code extension rest client
-
+# 1. install vs code extension rest client
+# 2. click send request button
 
 GET http://localhost:3000/api
-###
-
-GET http://localhost:3000/api/getUser
 ###
 
 GET http://localhost:3000/api/getUser
