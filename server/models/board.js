@@ -3,15 +3,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     joined: { type: Date, default: Date.now },
-    posts: [{type: Schema.Types.ObjectId, ref: 'Post'}]
+    // document size 16mb 제한 때문에 embedded로 작성하지 않음. 
+    posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 const postSchema = new Schema({
-    id: { type: String, required: true, unique: true },
-    writer: { type: String, required: true },
+    author: {
+      id: { type: Schema.Types.ObjectId, ref: 'User' }, 
+      name: { type: String, required: true }
+    },
     title: { type: String, required: true },
     contents: { type: String, required: true },
     created: { type: Date, default: Date.now },
@@ -19,8 +22,10 @@ const postSchema = new Schema({
 });
 
 const commentSchema = new Schema({
-    id: { type: String, required: true, unique: true },
-    writer: { type: String, required: true },
+    author: {
+      id: { type: Schema.Types.ObjectId, ref: 'User' }, 
+      name: { type: String, required: true }
+    },
     contents: { type: String, required: true },
     created: { type: Date, default: Date.now }
 });

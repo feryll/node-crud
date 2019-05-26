@@ -13,7 +13,43 @@ GET http://localhost:3000/api/getUser
 
 POST http://localhost:3000/api/createUser
 Content-Type: application/json
+
 { 
-    "name": "test",
+    "_id": "feryll@gmail.com",
+    "name": "test"
 }
+###
+
+POST http://localhost:3000/api/createPost
+Content-Type: application/json
+
+{ 
+    "author": {
+        "id": "5cea36edfcfa1d3b708178e0",
+        "name": "test"
+    },
+    "title": "test post3",
+    "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante ornare, fringilla nisl eu, pellentesque tortor. Sed imperdiet in justo eget elementum. Cras quis tincidunt lorem. Nullam scelerisque felis et dui lacinia, sed suscipit nisi ultricies. Integer tincidunt lacinia hendrerit. Donec sed quam a eros malesuada tincidunt. Nulla molestie sapien quis purus scelerisque, id aliquet tellus ullamcorper. Phasellus convallis molestie tempus. Ut vitae diam sed felis iaculis auctor. Nunc blandit maximus consectetur. Phasellus ac ipsum nec urna viverra luctus. Curabitur vulputate magna a pretium posuere. Vestibulum ut mauris id lorem varius venenatis id sit amet neque. Pellentesque ligula metus, laoreet at ornare eget, pellentesque non lacus."
+}
+###
+
+
+GET http://localhost:3000/api/getPosts/5cea36edfcfa1d3b708178e0
+###
+
+
+PUT http://localhost:3000/api/updatePost/5cea450d4f873d4a10d3e773
+Content-Type: application/json
+
+{ 
+    "author": {
+        "id": "5cea36edfcfa1d3b708178e0",
+        "name": "test"
+    },
+    "title": "test post4",
+    "contents": "!!!!!!!!!!!!!!!!!! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante ornare, fringilla nisl eu, pellentesque tortor. Sed imperdiet in justo eget elementum. Cras quis tincidunt lorem. Nullam scelerisque felis et dui lacinia, sed suscipit nisi ultricies. Integer tincidunt lacinia hendrerit. Donec sed quam a eros malesuada tincidunt. Nulla molestie sapien quis purus scelerisque, id aliquet tellus ullamcorper. Phasellus convallis molestie tempus. Ut vitae diam sed felis iaculis auctor. Nunc blandit maximus consectetur. Phasellus ac ipsum nec urna viverra luctus. Curabitur vulputate magna a pretium posuere. Vestibulum ut mauris id lorem varius venenatis id sit amet neque. Pellentesque ligula metus, laoreet at ornare eget, pellentesque non lacus."
+}
+###
+
+DELETE http://localhost:3000/api/removePost/5cea3c9643f68e4aa49b8062
 ###
