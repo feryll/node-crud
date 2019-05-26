@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var router = express.Router();
+var graphqlHTTP = require('express-graphql');
 
 var db = require('./config/database');
 var routes = require('./server/routes/board');
 var DAO = require('./server/controllers/dao');
+var {schema, root} = require('./server/graphql/schema');
 
 var app = express();
 db();
@@ -24,6 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
 routes(router, DAO);
+
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

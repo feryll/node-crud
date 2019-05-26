@@ -84,9 +84,9 @@ module.exports = {
                         console.log("Error in update user because of deleting a comment", err);
                         throw err;
                     }
-                    response.json(user);
                 }
             );
+            response.json(comment);
         });
     }
 }

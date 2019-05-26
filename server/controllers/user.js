@@ -5,7 +5,6 @@ var Comment = require('../models/board').Comment;
 module.exports = {
     createUser : function(request, response){
             var data = new User({
-                id : request.body.id,
                 name : request.body.name
             }).save(function(err, user){
                 if(err){

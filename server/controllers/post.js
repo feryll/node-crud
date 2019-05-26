@@ -69,7 +69,7 @@ module.exports = {
                         console.log("Error in update user because of deleting a post", err);
                         throw err;
                     }
-                    response.json(user);
+                    
                 }
             );
 
@@ -80,6 +80,8 @@ module.exports = {
                     throw err;
                 }
             });
+
+            response.json(post);
         });
     }
 }
