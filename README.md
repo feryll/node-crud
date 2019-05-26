@@ -1,5 +1,5 @@
 # node-crud
-board crud node backend with graphgl and rest api
+board crud node backend with graphql and rest api
 
 # how to start
 `npm start`
