@@ -1,3 +1,5 @@
+# how to use
+# install vs code extension rest client
 
 GET http://localhost:3000/api/getUser
 ###
